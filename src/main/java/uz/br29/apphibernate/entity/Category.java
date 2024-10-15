@@ -1,4 +1,4 @@
-package uz.br29.entity;
+package uz.br29.apphibernate.entity;
 
 
 import jakarta.persistence.*;

@@ -1,4 +1,4 @@
-package uz.br29.entity;
+package uz.br29.apphibernate.entity;
 
 import jakarta.persistence.*;
 
@@ -9,7 +9,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
-    private Long id;
+    private Long productId;
 
     @Column(name = "product_name")
     private String productName;
@@ -27,20 +27,27 @@ public class Product {
 
     }
 
-    public Product(Long id, String productName, String description, Long categoryId, Double price) {
-        this.id = id;
+    public Product(Long productId, String productName, String description, Long categoryId, Double price) {
+        this.productId = productId;
         this.productName = productName;
         this.description = description;
         this.categoryId = categoryId;
         this.price = price;
     }
 
-    public Long getId() {
-        return id;
+    public Product(String productName, String description, Long categoryId, Double price) {
+        this.productName = productName;
+        this.description = description;
+        this.categoryId = categoryId;
+        this.price = price;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public String getProductName() {
@@ -74,4 +81,5 @@ public class Product {
     public void setPrice(Double price) {
         this.price = price;
     }
+
 }

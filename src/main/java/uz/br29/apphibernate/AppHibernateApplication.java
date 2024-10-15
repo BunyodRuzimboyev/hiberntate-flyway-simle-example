@@ -1,15 +1,26 @@
 package uz.br29.apphibernate;
 
+import org.flywaydb.core.Flyway;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import uz.br29.apphibernate.migration.FlywayMigration;
+
 
 @SpringBootApplication
-public class AppHibernateApplication {
+public class AppHibernateApplication implements CommandLineRunner {
+
 
     public static void main(String[] args) {
         SpringApplication.run(AppHibernateApplication.class, args);
     }
 
+
+    @Override
+    public void run(String... args) throws Exception {
+        FlywayMigration.migrate();
+    }
 }
 
 //public class Main {

@@ -1,9 +1,11 @@
-package uz.br29.utils;
+package uz.br29.apphibernate.utils;
 
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import uz.br29.entity.Category;
-import uz.br29.entity.Product;
+import uz.br29.apphibernate.entity.Category;
+import uz.br29.apphibernate.entity.Product;
 
 import java.util.Properties;
 
@@ -18,20 +20,16 @@ public class HibernateUtils {
                     try {
                         Properties properties = new Properties();
                         properties.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
-                        properties.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/db_test_hibernate2");
+                        properties.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/db_test_hibernate");
                         properties.setProperty("hibernate.connection.username", "postgres");
                         properties.setProperty("hibernate.connection.password", "siroj1294");
                         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-                        properties.setProperty("hibernate.physical_naming_strategy", "org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl");
-                        properties.setProperty("hibernate.hbm2.ddl.auto", "update");
-                        properties.setProperty("hibernate.use_sql_comments", "true");
+                        properties.setProperty("hibernate.hbm2ddl.auto", "update");
                         properties.setProperty("hibernate.show_sql", "true");
                         properties.setProperty("hibernate.format_sql", "true");
 
                         Configuration configuration = new Configuration();
                         configuration.setProperties(properties);
-
-                        // Add annotated classes
                         configuration.addAnnotatedClass(Category.class);
                         configuration.addAnnotatedClass(Product.class);
 
@@ -44,6 +42,10 @@ public class HibernateUtils {
             }
         }
         return factory;
+    }
+
+    public static Session openSession() {
+        return getSessionFactory().openSession();
     }
 
     public static void shutdown() {

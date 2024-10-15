@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_test_hibernate
+    username: postgres
+    password: siroj1294
+    driver-class-name: org.postgresql.Driver
+
+  flyway:
+    enabled: true  # Enables Flyway migrations
+    baseline-on-migrate: true  # Optional: Allows migration to start from the current state
+    locations: classpath:db/migration  # Location of migration scripts
+
+  hibernate:
+    ddl-auto: create-drop  # This corresponds to "hibernate.hbm2ddl.auto"
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        physical_naming_strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        use_sql_comments: true
+        show_sql: true
+        format_sql: true
+
+
+server:
+  port: 8486
